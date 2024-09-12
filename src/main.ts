@@ -3,7 +3,8 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/router'
+const app = createApp(App);
 
-App.use(router);
+app.use(router);
 
-createApp(App).mount('#app')
+app.mount('#app');

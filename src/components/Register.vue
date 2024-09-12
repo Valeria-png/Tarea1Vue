@@ -1,6 +1,5 @@
 <script  lang="ts">
   import { defineComponent,ref } from 'vue';
-  import InputPhone from './InputPhone.vue';
   interface User {
     name: string;
     dateOfBirth: string;
@@ -9,7 +8,6 @@
     email: string;
   }
   export default defineComponent({
-    components: { InputPhone },
     name: 'Register',
     setup() {
       const users = ref<User[]>([]);
@@ -82,6 +80,7 @@
           this.errorPhone = false
           this.errorAddress = false
         }
+        localStorage.setItem('newUserRegistered', 'true');
       }
     }
   });
@@ -100,13 +99,15 @@
         <input type="text" v-model="name"  :style="{ border: errorName ? '2px solid #FF5E5E' : '' }">
         <label for="date">Fecha de nacimiento</label>
         <input type="text" v-model="dateOfBirth" :style="{ border: errorDateOfBirth ? '2px solid #FF5E5E' : '' }">
-        <label for="phone">Número de Teléfono</label>
+        <label for="phone">Teléfono</label>
         <input type="text" v-model="phone" :style="{ border: errorPhone ? '2px solid #FF5E5E' : '' }">
         <label for="address">Dirección</label>
         <input type="text" v-model="address" :style="{ border: errorAddress ? '2px solid #FF5E5E' : '' }">
         <label for="email">Correo</label>
         <input type="text" v-model="email" :style="{ border: errorEmail ? '2px solid #FF5E5E' : '' }"> 
         <button @click="save">Enviar</button>
+        <hr>
+        <h3>¿Ya hiciste tu cuenta? <a href="/">Iniciar sesión</a></h3>
       </div>
       <div class="container">
         <h2>Información de tí</h2>
